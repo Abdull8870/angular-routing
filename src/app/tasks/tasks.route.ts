@@ -4,6 +4,11 @@ import { TasksComponent } from "./tasks.component";
 
 export const taskRoutes:Routes=[
     {
+        path:'',
+        redirectTo:'tasks',
+        pathMatch:'prefix'
+    },
+    {
         path:'tasks',
         component:TasksComponent
     },
