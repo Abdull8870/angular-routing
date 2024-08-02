@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { NewTaskComponent } from "./new-task/new-task.component";
-import { TasksComponent } from "./tasks.component";
+import { canDeactivate, NewTaskComponent } from "./new-task/new-task.component";
+import { TasksComponent, tasksResolver } from "./tasks.component";
 
 export const taskRoutes:Routes=[
     {
@@ -10,11 +10,16 @@ export const taskRoutes:Routes=[
     },
     {
         path:'tasks',
-        component:TasksComponent
+        component:TasksComponent,
+        runGuardsAndResolvers: 'always',
+        resolve:{
+            userTasks:tasksResolver
+        }
     },
     {
         path:'tasks/new',
-        component:NewTaskComponent
+        component:NewTaskComponent,
+        canDeactivate:[canDeactivate]
     }
 
 ]
